@@ -7,6 +7,10 @@ export default function Task({ navigation }) {
 
   const [ task, setTask ] = useState([]);
 
+  function deleteTask(id){
+    database.collection("Tasks").doc(id).delete();
+  }
+
   useEffect( () => {
     database.collection("Tasks").onSnapshot( (query) => {
       const list = [];
@@ -20,8 +24,8 @@ export default function Task({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList />
-      <TouchableOpacity>
-        <Text style={styles.texto}>Page Tasks</Text>
+      <TouchableOpacity style={styles.buttonNewTask}>
+        <Text style={styles.iconButton}> + </Text>
       </TouchableOpacity>
     </View>
   );

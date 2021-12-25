@@ -15,21 +15,21 @@ const App = () => {
           name="Task"
           component={ Task } 
           options={{
-            headerTintColor: '#f0f',
+            headerTintColor: '#f92e6a',
           }}
         />
         <stack.Screen 
           name="New Task"
           component={ newTask } 
           options={{
-            headerTintColor: '#f0f',
+            headerTintColor: '#f92e6a',
           }}
         />
         <stack.Screen 
           name="Details"
           component={ Details } 
           options={{
-            headerTintColor: '#f0f',
+            headerTintColor: '#f92e6a',
           }}
         />
       </stack.Navigator>

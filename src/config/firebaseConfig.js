@@ -1,8 +1,6 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-// import firebase from '@react-native-firebase/app';
-// import firebaseStorage from '@react-native-firebase/storage';
+import firebase from 'firebase';
+import 'firebase/storage';
+
 import { APIKEY, AUTHDOMAIN, PROJECTID, STORAGEBUCKET, MESSAGINGSENDERID, APPID} from '@env';
 
 const firebaseConfig = {
@@ -15,11 +13,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-//app = firebase.initializeApp(firebaseConfig)
-const app = firebase.initializeApp(firebaseConfig)
+if(!firebase.apps.length)
+  firebase.initializeApp(firebaseConfig)
+
 const database = firebase.firestore();
-//const database = firebase.firestore();//.settings({ experimentalForceLongPolling: true, merge: true });
-
-
-export default database;
+export default database

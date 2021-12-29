@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { Button, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { collection, getDocs } from "firebase/firestore";
 import database from '../../config/firebaseConfig';
 import styles from './Style';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 export default function Task({ navigation }) {
   const [task, setTask] = useState([]);
@@ -12,20 +14,28 @@ export default function Task({ navigation }) {
   }
  
   useEffect(() => {
-    database.collection("Tasks").onSnapshot((query) => {
+    console.log('ok')
+    /*database.collection("Tasks").onSnapshot((query) => {
       const list = [];
       console.log("useEffect")
       console.log(query)
       query.forEach((doc) => {
-        console.log('--------doc')
-        console.log(doc)
         list.push({ ...doc.data(), id: doc.id });
       });
       setTask(list);
       console.log('--------task')
       console.log(task)
-    });
+    });*/
   }, []);
+
+  handleClick = () =>  {
+    console.log('handleClick')
+    getDocs(collection(database, "Tasks"))
+      .then( (res) => {
+        console.log(res.doc)
+      });
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -64,6 +74,7 @@ export default function Task({ navigation }) {
           )
         }}
       />
+      <Button title="ver" onPress={ () => handleClick()} />
       <TouchableOpacity style
         style={styles.buttonNewTask}
         onPress={() => navigation.navigate("New Task")}

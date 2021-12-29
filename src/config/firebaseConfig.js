@@ -1,20 +1,25 @@
-import firebase from 'firebase';
-import 'firebase/storage';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-import { APIKEY, AUTHDOMAIN, PROJECTID, STORAGEBUCKET, MESSAGINGSENDERID, APPID} from '@env';
+import { 
+  APIKEY, AUTHDOMAIN, PROJECTID, STORAGEBUCKET, MESSAGINGSENDERID, APPID
+} from '@env';
 
-const firebaseConfig = {
+const firebaseApp = initializeApp({
   apiKey: APIKEY,
   authDomain: AUTHDOMAIN,
   projectId: PROJECTID,
   storageBucket: STORAGEBUCKET,
   messagingSenderId: MESSAGINGSENDERID,
   appId: APPID
-};
+});
 
 // Initialize Firebase
-if(!firebase.apps.length)
-  firebase.initializeApp(firebaseConfig)
+// if(!firebase.apps.length)
+//   firebase.initializeApp(firebaseConfig)
 
-const database = firebase.firestore();
-export default database
+// const database = firebase.firestore();
+// export default database
+const database = getFirestore();
+
+export default database;
